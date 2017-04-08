@@ -1,0 +1,77 @@
+#include<iostream>
+#include<stdio.h>
+using namespace std;
+struct process
+{int t;
+ int i;
+};
+int main()
+{  process p[4];
+   int n=4,temp ,tempi;
+   float w[4],t[4],ta=0,wa=0;
+   for(int j=0;j<4;j++)
+   { cout<<"Enter the Burst Time of the process"<<j+1<<"  :";
+     cin>>p[j].t;
+     p[j].i=j;
+   }
+   for(int j=n-1;j>0;j--)
+   { for(int k=0;k<j;k++)
+      { if(p[k].t>p[k+1].t)
+      { temp=p[k+1].t;
+        tempi=p[k+1].i;
+
+        p[k+1].t=p[k].t;
+        p[k+1].i=p[k].i;
+
+        p[k].t=temp;
+        p[k].i=tempi;
+      }
+       }
+   }
+
+   t[0]=p[0].t;
+   for(int j=1;j<4;j++)
+    t[j]=t[j-1]+p[j].t;
+   for(int j=0;j<4;j++)
+   {w[j]=t[j]-p[j].t;
+    ta+=t[j];
+    wa+=w[j];
+   }
+
+   /* for(j=0;j<4;j++)
+   {cout<<"\n THE TAT OF THE PROCESS P"<<p[j].i<<"is  :- "<<t[j]<<"ms";
+   }
+   cout<<"\n\n\n\n\n\n";
+   for(j=0;j<4;j++)
+      {cout<<"\n THE WT OF PROCESS P"<<p[j].i<<"is  :-"<<w[j]<<"ms";
+      }
+   cout<<"\n\n\n\n\n\n\n";
+   for(j=0;j<4;j++)
+   { cout<<"The Given BURST Of the process P"<<p[j].i<<"is  :-"<<p[j].t<<"ms";
+   }
+   getch();
+
+   // tabular display
+   clrscr();*/
+
+   cout<<"\n\n       SJF ALGO of 4 processes \n    (All times are in milliseconds)\n\n  -: RESULT  :-\n";
+   for(int j=0;j<60;j++)
+   cout<<"-";
+   cout<<"\n\n PROCESS    | BURSTS   |  WT  |    TAT    |  \n\n";
+   for(int j=0;j<60;j++)
+      cout<<"-";
+      cout<<"\n";
+
+   for(int j=0;j<4;j++)
+   { cout<<"     "<<p[j].i+1<<"          "<<p[j].t<<"          "<<w[j]<<"        "<<t[j]<<"\n";
+     for(int m=0;m<60;m++)
+     cout<<"-";
+     cout<<"\n";
+   }float atat=ta/4,awt=wa/4;
+   cout<<"\r  AVERAGE  :  |            "<<awt<<"        "<<atat<<endl;
+   for(int j=0;j<60;j++)
+       cout<<"-";
+
+   return 0;
+}
+
